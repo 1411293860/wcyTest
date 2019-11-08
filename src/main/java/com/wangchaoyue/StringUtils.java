@@ -66,4 +66,56 @@ public class StringUtils {
 		}
 		return sb.toString();
 	}
+	
+	
+	public static String getRandomStr2(int n) {
+		
+		StringBuilder sb = new StringBuilder();
+		Random random = new Random();
+		
+		for (int i = 0; i < n; i++) {
+			int r = random.nextInt(36);
+			if(r<26) {
+				char c = (char)('A' +  r );
+				sb.append(c);
+			}else {
+				sb.append(r-26);
+			}
+			
+		}
+		return sb.toString();
+	}
+	
+	public static String getRandomCn(int n ) {
+		
+		StringBuilder sb = new StringBuilder();
+		for (int i = 0; i < n; i++) {
+			sb.append(getRandomCn());
+		}
+		return sb.toString();
+	}
+	
+	private static char getRandomCn() {
+		
+		String str = "";
+        int hightPos; //
+        int lowPos;
+        Random random = new Random();
+
+        hightPos = (176 + Math.abs(random.nextInt(39)));
+        lowPos = (161 + Math.abs(random.nextInt(93)));
+
+        byte[] b = new byte[2];
+        b[0] = (Integer.valueOf(hightPos)).byteValue();
+        b[1] = (Integer.valueOf(lowPos)).byteValue();
+
+        try {
+            str = new String(b, "UTF-8");
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("  ------");
+        }
+
+        return str.charAt(0);
+	}
 }
